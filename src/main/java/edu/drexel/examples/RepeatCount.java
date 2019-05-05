@@ -1,4 +1,4 @@
-package intquestion2;
+package edu.drexel.examples;
 import java.util.*;
 
 public class RepeatCount {
