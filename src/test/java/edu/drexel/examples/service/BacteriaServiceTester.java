@@ -26,7 +26,10 @@ public class BacteriaServiceTester {
 		//BacteriaService service = new BacteriaService();
 		List<Bacteria> list = service.parse(filename);
 		System.out.println("List size = " + list.size());
-		service.load(list);
+		//service.load(list);
+		
+		Bacteria bt1 = service.findByTaxId(32002);
+		System.out.println("bt1 = " + bt1);
 	}
 
 }

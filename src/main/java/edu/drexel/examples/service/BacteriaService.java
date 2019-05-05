@@ -76,4 +76,8 @@ public class BacteriaService {
 		}
 	}
 	
+	public Bacteria findByTaxId(int taxId) {
+		return bacteriaRepo.findByTaxId(taxId);
+	}
+	
 }

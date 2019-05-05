@@ -7,5 +7,7 @@ import edu.drexel.examples.model.Bacteria;
 
 @Repository
 public interface BacteriaRepo extends JpaRepository<Bacteria, Integer>{
+
+	Bacteria findByTaxId(int taxId);
 	
 }
