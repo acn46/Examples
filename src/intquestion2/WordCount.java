@@ -1,13 +1,16 @@
 package intquestion2;
 import java.io.*; 
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.*; 
 
 
 
-public class countWords {
+
+public class WordCount {
 	
-	static public void getWords(String input, HashMap<String, Integer> words) {
+	static public void getWords(String input, Map<String, Integer> words) {
 		
 	    String[] wordarray = input.split("\\s+");
 	    for (int i = 0; i < wordarray.length; i++) {
@@ -25,9 +28,9 @@ public class countWords {
 	public static void main(String[] args) throws IOException { 
 		
 		try {
-			File file = new File("C:\\Users\\Home\\Downloads\\gutenberg.txt"); //Put file path here 
+			File file = new File("/Users/user/Documents/gutenberg.txt"); //Put file path here 
 			BufferedReader br = new BufferedReader(new FileReader(file)); 	
-			HashMap<String, Integer> words = new HashMap<String, Integer>(); 
+			Map<String, Integer> words = new HashMap<String, Integer>(); 
 			
 			String st; 
 			while ((st = br.readLine()) != null) {
@@ -38,11 +41,15 @@ public class countWords {
 			
 			//Map<String, Float> map = new TreeMap<>(yourMap);
 			
-			Set<String> keys = words.keySet();
-			for(String key: keys)
-			{
-				System.out.println("Value of "+key+" is: "+ words.get(key));
-	        }
+			//Set<String> keys = words.keySet();
+			
+			
+			words.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByKey()).forEach(System.out::println);
+			Map<String, Integer> sortedWords = words.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByKey()).collect( Collectors.toMap( e -> e.getKey() , e -> e.getValue()  ) );
+			//			for(String key: keys)
+//			{
+//				System.out.println("Value of "+key+" is: "+ words.get(key));
+//	        }
 		}
 		catch(IOException e) {
 			System.out.println("Error : input a valid path and filename");

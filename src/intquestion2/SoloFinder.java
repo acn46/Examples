@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.Map;
 import java.util.Hashtable;
 
-public class findsolo {
+public class SoloFinder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

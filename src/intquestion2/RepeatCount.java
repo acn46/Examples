@@ -1,7 +1,7 @@
 package intquestion2;
 import java.util.*;
 
-public class repeats {
+public class RepeatCount {
 
 	static public int getTime(List<Integer> arr, int position) {
 		
