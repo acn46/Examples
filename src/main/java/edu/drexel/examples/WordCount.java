@@ -25,19 +25,18 @@ public class WordCount {
 	}
 	
 	
-	public static void main(String[] args) throws IOException { 
-		
+	public static void main(String[] args) { 
+		File file = new File("/Users/user/Documents/gutenberg.txt"); //Put file path here 
+		BufferedReader br = null;
 		try {
-			File file = new File("/Users/user/Documents/gutenberg.txt"); //Put file path here 
-			BufferedReader br = new BufferedReader(new FileReader(file)); 	
+			br = new BufferedReader(new FileReader(file)); 	
+
 			Map<String, Integer> words = new HashMap<String, Integer>(); 
-			
 			String st; 
 			while ((st = br.readLine()) != null) {
 				getWords(st, words);
 			}
 			
-			br.close();
 			
 			//Map<String, Float> map = new TreeMap<>(yourMap);
 			
@@ -53,6 +52,14 @@ public class WordCount {
 		}
 		catch(IOException e) {
 			System.out.println("Error : input a valid path and filename");
+		} finally {
+			try {
+				br.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}
