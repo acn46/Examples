@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,12 +14,18 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 import edu.drexel.examples.model.Bacteria;
+import edu.drexel.examples.repo.BacteriaRepo;
 
+@Service
 public class BacteriaService {
 
 	private static final String UNKNOWN = "UNKNOWN";
 
+	@Autowired
+	private BacteriaRepo bacteriaRepo; 
+	
 	public List<Bacteria> parse(String filename) {
+		System.out.println("Parsing " + filename + " ..." );
 		List<Bacteria> list = new ArrayList<>();
 	
 		// Open the csv file
@@ -57,9 +65,15 @@ public class BacteriaService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
 		
 		return list;
+	}
+	
+	public void load(List<Bacteria> list) {
+		System.out.println("Loading " + list.size() + " records..." );
+		for (Bacteria bacteria : list) {
+			bacteriaRepo.save(bacteria);
+		}
 	}
 	
 }

@@ -1,13 +1,44 @@
 package edu.drexel.examples.model;
 
-public class Bacteria {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity(name="Bacteria")
+@Table(name="bacteria")
+@NamedQuery(name="Bacteria.findAll", query="SELECT b FROM Bacteria b")
+public class Bacteria implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="bacterial_id")
+	private int id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="tax_id")
 	private int taxId;
+
+	@Column(name="lineage")
 	private String lineage;
+	
+	@Column(name="bacteria_count")
 	private int bacteriaCount;
+	
+	@Column(name="proportion_all")
 	private double proportionAll;
+	
+	@Column(name="proportion_classified")
 	private double proportionClassified;
+	
 	public String getName() {
 		return name;
 	}
